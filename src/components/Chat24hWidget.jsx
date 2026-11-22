@@ -6,8 +6,13 @@ function getSmartReply(input, pt) {
   const q = input.toLowerCase();
   if (q.includes('buffet') || q.includes('preç') || q.includes('pric') || q.includes('quanto') || q.includes('cost')) {
     return pt
-      ? 'O nosso Buffet Livre (pequeno-almoço, almoço e jantar) varia entre 1.000 e 1.500 CVE (referência média de 1.200 CVE), com pratos cabo-verdianos, internacionais, opções vegetarianas/veganas e sushi!'
-      : 'Our All-You-Can-Eat Buffet (breakfast, lunch & dinner) is 1,000–1,500 CVE (avg. 1,200 CVE), featuring Cabo Verdean, international, vegetarian/vegan dishes & sushi!';
+      ? 'O Buffet Livre custa em média 1.200 CVE (1.000–1.500 CVE). Também temos Pizzas (900 a 1.100 CVE) e Burguers como Kriolinha (600 CVE) e Double Frango/Vaca (800 CVE)!'
+      : 'Our All-You-Can-Eat Buffet averages 1,200 CVE (1,000–1,500 CVE). We also have Pizzas (900–1,100 CVE) and Burgers starting at 600 CVE!';
+  }
+  if (q.includes('pizza') || q.includes('burger') || q.includes('hamb')) {
+    return pt
+      ? 'Temos Pizzas de 900 CVE (Fiambre) a 1.100 CVE (Bacon & BBQ, Calabresa, 2 Queijos, Caribe) e Burguers de 600 CVE (Kriolinha) a 1.000 CVE (Mini Burguer Pote) + Monster Overdose!'
+      : 'Pizzas run 900–1,100 CVE (Bacon & BBQ, Calabresa, Tuna, Vegetarian) and Burgers run 600–1,000 CVE (Kriolinha, Double Beef/Chicken, Mini Burger Bucket)!';
   }
   if (q.includes('hora') || q.includes('aberto') || q.includes('open') || q.includes('24') || q.includes('madrugada')) {
     return pt

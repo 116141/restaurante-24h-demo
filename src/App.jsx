@@ -609,14 +609,14 @@ export default function App() {
                   labelEn: 'Reception & Counter',
                 },
                 {
-                  src: '/images/salao-decor.png',
-                  labelPt: 'Decoração & Arte Local',
-                  labelEn: 'Interior Decor',
+                  src: '/images/salao-maps.jpg',
+                  labelPt: 'Salão Climatizado & Decoração',
+                  labelEn: 'Air-Conditioned Dining Room',
                 },
                 {
-                  src: '/images/salao-clientes.jpg',
-                  labelPt: 'Ambiente para Grupos',
-                  labelEn: 'Group Dining',
+                  src: '/images/buffet-vitrine.jpg',
+                  labelPt: 'Vitrine Buffet & Bolos',
+                  labelEn: 'Buffet & Cake Display',
                 },
               ].map((photo) => (
                 <div
@@ -646,7 +646,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-[#16110E] border border-stone-800 p-6 space-y-2">
+            <div className="rounded-2xl bg-[#16110E] border border-stone-800 p-6 space-y-3">
               <Star className="w-6 h-6 text-amber-400 fill-amber-400" />
               <h3 className="font-bold text-white">
                 {RESTAURANT_INFO.googleRating}★ Google &amp; {RESTAURANT_INFO.guidesRating}★ Guias
@@ -656,6 +656,16 @@ export default function App() {
                   ? 'Recomendado por moradores e viajantes que chegam fora de horas na Ilha de Santiago.'
                   : 'Recommended by locals and late-arriving travelers across Santiago Island.'}
               </p>
+              <a
+                href={RESTAURANT_INFO.mapsQueryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:underline"
+              >
+                {pt
+                  ? `Ver as ${RESTAURANT_INFO.googleReviews} avaliações (${RESTAURANT_INFO.googleRating}★) no Google Maps →`
+                  : `View ${RESTAURANT_INFO.googleReviews} reviews (${RESTAURANT_INFO.googleRating}★) on Google Maps →`}
+              </a>
             </div>
 
             <div className="rounded-2xl bg-[#16110E] border border-stone-800 p-6 space-y-3">
@@ -668,9 +678,19 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:underline"
               >
-                {pt ? 'Abrir Rota no Google Maps →' : 'Open Directions in Google Maps →'}
+                {pt ? 'Como Chegar / Abrir no GPS →' : 'Open Directions in GPS →'}
               </a>
             </div>
+          </div>
+
+          <div className="rounded-3xl overflow-hidden border border-stone-800 bg-[#16110E]">
+            <iframe
+              title="Mapa Restaurante 24h Achada de Santo António"
+              src={RESTAURANT_INFO.mapsEmbedUrl}
+              loading="lazy"
+              className="w-full h-72 border-0"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
           </div>
         </section>
