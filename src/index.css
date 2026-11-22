@@ -11,3 +11,21 @@ body {
   color: #fafaf9;
   -webkit-font-smoothing: antialiased;
 }
+
+.font-editorial {
+  font-family: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+  font-weight: 400;
+}
+
+.double-frame {
+  position: relative;
+}
+
+.double-frame::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: inherit;
+  pointer-events: none;
+}

@@ -213,7 +213,7 @@ export default function App() {
                 {RESTAURANT_INFO.sloganPrimary} • {RESTAURANT_INFO.sloganSecondary}
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08]">
+              <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.06]">
                 {pt
                   ? 'Buffet, Fast-Food & Delivery 24 Horas na Praia.'
                   : '24/7 Buffet, Burgers & Late-Night Delivery in Praia.'}
@@ -320,10 +320,10 @@ export default function App() {
         <section className="py-16 border-b border-stone-800/80 bg-[#120D0B]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-7 space-y-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400">
                 {pt ? 'Pequeno-Almoço • Almoço • Jantar' : 'Breakfast • Lunch • Dinner'}
               </span>
-              <h2 className="text-3xl font-extrabold text-white">
+              <h2 className="font-editorial text-3xl sm:text-4xl text-white">
                 {pt ? 'Buffet Livre Todos os Dias' : 'Daily All-You-Can-Eat Buffet'}
               </h2>
               <p className="text-sm sm:text-base text-stone-300 leading-relaxed">
@@ -374,15 +374,59 @@ export default function App() {
           </div>
         </section>
 
+        {/* 3-UP HOSPITALITY FEATURE CARDS (DISHOOM STYLE) */}
+        <section className="py-12 border-b border-stone-800/80 bg-[#0F0B09]">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-6">
+            {[
+              {
+                href: '#menu',
+                img: '/images/buffet-vitrine.jpg',
+                eyebrow: pt ? 'TODOS OS DIAS • 1.200 CVE' : 'DAILY • 1,200 CVE',
+                title: pt ? 'Buffet Livre & Take-Away' : 'All-Day Buffet & Take-Away',
+              },
+              {
+                href: '#menu',
+                img: '/images/delivery-24h.jpg',
+                eyebrow: pt ? 'ENTREGA NA PRAIA • 24/7' : 'PRAIA DELIVERY • 24/7',
+                title: pt ? 'Burgers, Pizzas & Madrugada' : 'Burgers, Pizzas & Late-Night',
+              },
+              {
+                href: '#reservas',
+                img: '/images/salao-maps.jpg',
+                eyebrow: pt ? 'GRUPOS & ANIVERSÁRIOS' : 'GROUPS & BIRTHDAYS',
+                title: pt ? 'Reservar Mesa no Salão' : 'Book a Table Anytime',
+              },
+            ].map((card) => (
+              <a
+                key={card.title}
+                href={card.href}
+                className="group relative rounded-2xl overflow-hidden border border-stone-800 bg-[#16110E] block"
+              >
+                <img
+                  src={card.img}
+                  alt={card.title}
+                  className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute top-3 inset-x-3 double-frame rounded-xl bg-[#0C0908]/90 backdrop-blur border border-amber-500/30 px-4 py-3 text-center">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400">
+                    {card.eyebrow}
+                  </p>
+                  <p className="font-editorial text-lg text-white mt-0.5">{card.title}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* 4. MENU CATALOG + CART */}
         <section id="menu" className="py-16 border-b border-stone-800/80">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400">
                   {pt ? 'Delivery 24/7 na Praia' : '24/7 Praia Delivery'}
                 </span>
-                <h2 className="text-3xl font-extrabold text-white mt-1">
+                <h2 className="font-editorial text-3xl sm:text-4xl text-white mt-1">
                   {pt ? 'Cardápio Fast-Food, Buffet & Bar' : 'Fast-Food, Buffet & Bar Menu'}
                 </h2>
               </div>
@@ -432,13 +476,13 @@ export default function App() {
                           className="w-full h-full object-cover"
                         />
                         {(pt ? item.badgePt : item.badgeEn) && (
-                          <span className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-stone-950/85 text-amber-300 text-[10px] font-bold uppercase border border-amber-500/30">
+                          <span className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded bg-[#0C0908]/90 text-amber-300 text-[10px] font-bold uppercase tracking-[0.14em] border border-amber-500/40">
                             {pt ? item.badgePt : item.badgeEn}
                           </span>
                         )}
                       </div>
                       <div>
-                        <h3 className="text-base font-bold text-white">
+                        <h3 className="font-editorial text-lg text-white">
                           {pt ? item.namePt : item.nameEn}
                         </h3>
                         <p className="text-xs text-stone-400 mt-1 leading-relaxed">
@@ -636,9 +680,14 @@ export default function App() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-            <div className="rounded-2xl bg-[#16110E] border border-stone-800 p-6 space-y-2">
-              <ShieldCheck className="w-6 h-6 text-emerald-400" />
-              <h3 className="font-bold text-white">{RESTAURANT_INFO.foodSafetyPartner}</h3>
+            <div className="double-frame rounded-2xl bg-[#16110E] border border-amber-500/35 p-7 space-y-3 text-center">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                {pt ? 'Certificação & Higiene' : 'Food Safety'}
+              </p>
+              <h3 className="font-editorial text-xl text-white">{RESTAURANT_INFO.foodSafetyPartner}</h3>
+              <div className="flex items-center justify-center gap-2 text-amber-400/60 text-xs">
+                <span className="h-px w-8 bg-amber-500/30" />★<span className="h-px w-8 bg-amber-500/30" />
+              </div>
               <p className="text-xs text-stone-400 leading-relaxed">
                 {pt
                   ? 'Acompanhamento técnico em segurança alimentar e higiene para garantir qualidade 24h por dia.'
@@ -646,11 +695,16 @@ export default function App() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-[#16110E] border border-stone-800 p-6 space-y-3">
-              <Star className="w-6 h-6 text-amber-400 fill-amber-400" />
-              <h3 className="font-bold text-white">
+            <div className="double-frame rounded-2xl bg-[#16110E] border border-amber-500/35 p-7 space-y-3 text-center">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400">
+                {pt ? 'Avaliações Verificadas' : 'Verified Reviews'}
+              </p>
+              <h3 className="font-editorial text-xl text-white">
                 {RESTAURANT_INFO.googleRating}★ Google &amp; {RESTAURANT_INFO.guidesRating}★ Guias
               </h3>
+              <div className="flex items-center justify-center gap-2 text-amber-400/60 text-xs">
+                <span className="h-px w-8 bg-amber-500/30" />★<span className="h-px w-8 bg-amber-500/30" />
+              </div>
               <p className="text-xs text-stone-400 leading-relaxed">
                 {pt
                   ? 'Recomendado por moradores e viajantes que chegam fora de horas na Ilha de Santiago.'
@@ -668,9 +722,14 @@ export default function App() {
               </a>
             </div>
 
-            <div className="rounded-2xl bg-[#16110E] border border-stone-800 p-6 space-y-3">
-              <MapPin className="w-6 h-6 text-amber-400" />
-              <h3 className="font-bold text-white">Achada de Santo António</h3>
+            <div className="double-frame rounded-2xl bg-[#16110E] border border-amber-500/35 p-7 space-y-3 text-center">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400">
+                {pt ? 'Localização 24/7' : '24/7 Location'}
+              </p>
+              <h3 className="font-editorial text-xl text-white">Achada de Santo António</h3>
+              <div className="flex items-center justify-center gap-2 text-amber-400/60 text-xs">
+                <span className="h-px w-8 bg-amber-500/30" />★<span className="h-px w-8 bg-amber-500/30" />
+              </div>
               <p className="text-xs text-stone-400">{RESTAURANT_INFO.address}</p>
               <a
                 href={RESTAURANT_INFO.mapsQueryUrl}
@@ -696,34 +755,81 @@ export default function App() {
         </section>
       </main>
 
-      {/* FOOTER */}
-      <footer className="border-t border-stone-800 bg-[#090706] py-10 px-4 text-xs text-stone-400">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <img
-              src="/images/logo-dark.jpg"
-              alt="24 Hora"
-              className="w-9 h-9 rounded-lg object-cover border border-amber-500/30"
-            />
-            <div>
-              <span className="font-bold text-white">{RESTAURANT_INFO.name}</span> •{' '}
-              <span>{RESTAURANT_INFO.sloganPrimary}</span>
+      {/* EDITORIAL MULTI-COLUMN FOOTER */}
+      <footer className="border-t border-stone-800 bg-[#090706] pt-14 pb-10 px-4 text-xs text-stone-400">
+        <div className="max-w-6xl mx-auto space-y-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="col-span-2 md:col-span-1 space-y-3">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logo-dark.jpg"
+                  alt="24 Hora"
+                  className="w-10 h-10 rounded-lg object-cover border border-amber-500/30"
+                />
+                <div>
+                  <p className="font-editorial text-base text-white">{RESTAURANT_INFO.name}</p>
+                  <p className="text-[11px] text-amber-400">{RESTAURANT_INFO.sloganPrimary}</p>
+                </div>
+              </div>
+              <p className="text-[11px] text-stone-500">Achada de Santo António, Praia • 24/7</p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400">
+                {pt ? 'Visite-nos' : 'Visit Us'}
+              </p>
+              <a href="#menu" className="block hover:text-white">
+                {pt ? 'Cardápio & Delivery' : 'Menu & Delivery'}
+              </a>
+              <a href="#reservas" className="block hover:text-white">
+                {pt ? 'Reservas & Aniversários' : 'Reservations & Events'}
+              </a>
+              <a href={RESTAURANT_INFO.mapsQueryUrl} target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                Google Maps (GPS)
+              </a>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400">
+                {pt ? 'Redes Sociais' : 'Social'}
+              </p>
+              <a href={RESTAURANT_INFO.instagram} target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                Instagram @24hora_cv
+              </a>
+              <a href={RESTAURANT_INFO.facebook} target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                Facebook 24hora Praia
+              </a>
+              <a href={RESTAURANT_INFO.tiktok} target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                TikTok @24hora_cv
+              </a>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400">
+                {pt ? 'Contacto 24/7' : '24/7 Contact'}
+              </p>
+              <a href={`tel:${RESTAURANT_INFO.tollFree.replace(/\s+/g, '')}`} className="block hover:text-white">
+                {pt ? 'Linha Gratuita:' : 'Toll-free:'} {RESTAURANT_INFO.tollFree}
+              </a>
+              <a href={`https://wa.me/${RESTAURANT_INFO.whatsappDigits}`} target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                WhatsApp: {RESTAURANT_INFO.whatsappDisplay}
+              </a>
+              <a href={`mailto:${RESTAURANT_INFO.email}`} className="block hover:text-white">
+                {RESTAURANT_INFO.email}
+              </a>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={RESTAURANT_INFO.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-amber-400"
+
+          <div className="pt-6 border-t border-stone-800 flex flex-wrap items-center justify-between gap-4">
+            <span>© {new Date().getFullYear()} {RESTAURANT_INFO.name} • GilByte Solutions</span>
+            <button
+              type="button"
+              onClick={() => setLang(pt ? 'en' : 'pt')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-700 text-stone-200 hover:border-amber-500/50 transition"
             >
-              <ExternalLink className="w-3.5 h-3.5" />
-              @24hora_cv
-            </a>
-            <a href={`mailto:${RESTAURANT_INFO.email}`} className="hover:text-amber-400">
-              {RESTAURANT_INFO.email}
-            </a>
-            <span className="text-stone-500">Protótipo por GilByte Solutions</span>
+              <Globe className="w-3.5 h-3.5 text-amber-400" />
+              {pt ? 'Português' : 'English'}
+            </button>
           </div>
         </div>
       </footer>
